@@ -20,13 +20,27 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        storyLabel.text = stories[0].title
-        choice1Button.setTitle(stories[0].choice1, for: .normal)
-        choice2Button.setTitle(stories[0].choice2, for: .normal)
+        updateUI(index: 0)
     }
 
-    @IBAction func choiceMade(_ sender: Any) {
+    @IBAction func choiceMade(_ sender: UIButton) {
+        var indexSelected = 0
+        if let userAnswer = sender.currentTitle {
+            if userAnswer == "Take a left." {
+                indexSelected = 1
+            } else if userAnswer == "Take a right."{
+                indexSelected = 2
+            }
+            
+            updateUI(index: indexSelected)
+        }
+    }
+    
+    func updateUI(index i : Int) {
+        
+        storyLabel.text = stories[i].title
+        choice1Button.setTitle(stories[i].choice1, for: .normal)
+        choice2Button.setTitle(stories[i].choice2, for: .normal)
     }
     
 }
